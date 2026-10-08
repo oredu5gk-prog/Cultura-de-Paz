@@ -1,0 +1,362 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Laboratorio de cultura de paz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Concepto: hoja de laboratorio escolar, una sola columna estrecha, verde olivo como acento y dorado reservado al diploma. */
+:root{
+  --bg:#EDF2EF; --surface:#FFFFFF; --ink:#16251F; --muted:#50635B; --line:#D2DDD7;
+  --accent:#2F5D46; --accent-ink:#FFFFFF; --accent-soft:#E1EDE6; --gold:#A87A1E;
+  --ok:#1F7A4D; --ok-soft:#DDF1E6; --warn:#A8481A; --warn-soft:#F8E6DC;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --body:'Public Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1814; --surface:#17231E; --ink:#E6EFEA; --muted:#9BB0A6; --line:#2A3C34;
+  --accent:#7CC59E; --accent-ink:#0E1A14; --accent-soft:#1F3329; --gold:#D9AE55;
+  --ok:#6FD3A0; --ok-soft:#1B3A2B; --warn:#F0A074; --warn-soft:#3C2519; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1814; --surface:#17231E; --ink:#E6EFEA; --muted:#9BB0A6; --line:#2A3C34;
+  --accent:#7CC59E; --accent-ink:#0E1A14; --accent-soft:#1F3329; --gold:#D9AE55;
+  --ok:#6FD3A0; --ok-soft:#1B3A2B; --warn:#F0A074; --warn-soft:#3C2519; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:780px;margin-inline:auto;padding-inline:16px;padding-block:20px 56px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.brand{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.01em}
+.brand small{display:block;font-family:var(--body);font-weight:500;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.chip{font-variant-numeric:tabular-nums;font-weight:600;font-size:.9rem;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:6px 14px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.7rem,5vw,2.3rem)}
+h2{font-size:1.4rem}
+h3{font-size:1.1rem}
+p{margin:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:clamp(18px,4vw,30px)}
+.stack{display:flex;flex-direction:column;gap:18px}
+.lead{color:var(--muted);max-width:62ch}
+label,.lbl{font-weight:600;font-size:.92rem}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:12px 14px}
+textarea{min-height:140px;resize:vertical;line-height:1.5}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hint{font-size:.85rem;color:var(--muted)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.meta div{background:var(--bg);border-radius:8px;padding:10px 14px}
+.meta b{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.meta span{font-variant-numeric:tabular-nums;font-weight:600}
+.btn{font:inherit;font-weight:600;border:0;border-radius:8px;padding:12px 22px;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card .nm{font-family:var(--display);font-weight:700;font-size:1.05rem}
+.card .yr{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.card .tg{font-size:.9rem}
+.card[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.card[aria-pressed=true] .nm::after{content:" ✓";color:var(--accent)}
+.count{font-weight:600;font-variant-numeric:tabular-nums}
+
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.steps i{height:6px;border-radius:3px;background:var(--line)}
+.steps i.done{background:var(--accent)}
+.steps i.cur{background:var(--gold)}
+.frag{border-left:4px solid var(--accent);padding-left:16px;max-width:64ch}
+.who{display:flex;flex-direction:column;gap:2px}
+.who .yr{color:var(--muted);font-size:.9rem}
+.sec{display:flex;flex-direction:column;gap:10px;padding-top:18px;border-top:1px solid var(--line)}
+.counter{font-size:.85rem;font-variant-numeric:tabular-nums;font-weight:600;color:var(--warn)}
+.counter.ok{color:var(--ok)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:12px 14px;cursor:pointer}
+.opt:disabled{cursor:default}
+.opt.bad{border-color:var(--warn);background:var(--warn-soft)}
+.opt.good{border-color:var(--ok);background:var(--ok-soft)}
+.fb{border-radius:8px;padding:12px 14px;font-size:.95rem}
+.fb.bad{background:var(--warn-soft);color:var(--ink);border-left:4px solid var(--warn)}
+.fb.good{background:var(--ok-soft);color:var(--ink);border-left:4px solid var(--ok)}
+.scene{background:var(--bg);border-radius:8px;padding:12px 14px}
+
+.dip img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--muted);width:38%}
+.tablewrap{overflow-x:auto}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">Laboratorio de cultura de paz<small>Personajes que cambiaron el mundo</small></div>
+    <div class="chip" id="timer" hidden>Tiempo 00:00</div>
+  </header>
+
+  <!-- 1. Registro -->
+  <section id="v-reg" class="panel stack">
+    <h1>Antes de empezar, regístrate</h1>
+    <p class="lead">Elegirás 5 de 10 personajes. De cada uno leerás un fragmento de su historia, escribirás tu opinión y resolverás un dilema de conflicto buscando una salida pacífica. Al terminar se genera tu diploma con estos datos.</p>
+    <form id="f-reg" class="stack" autocomplete="off">
+      <div class="stack" style="gap:6px">
+        <label for="nombre">Nombre completo (nombre y apellidos)</label>
+        <input type="text" id="nombre" placeholder="Ej. Ana María López Torres" maxlength="80">
+        <span class="hint" id="nombre-hint">Escríbelo como aparece en tu lista, porque saldrá en el diploma.</span>
+      </div>
+      <div class="meta">
+        <div><b>Fecha de hoy</b><span id="r-fecha">…</span></div>
+        <div><b>Hora de inicio</b><span id="r-hora">…</span></div>
+      </div>
+      <p class="hint">La hora de inicio queda registrada cuando pulsas «Comenzar». El tiempo corre hasta que terminas el último personaje.</p>
+      <div><button class="btn" id="b-start" type="submit" disabled>Comenzar</button></div>
+    </form>
+  </section>
+
+  <!-- 2. Selección -->
+  <section id="v-pick" class="stack" hidden>
+    <div class="panel stack">
+      <h1>Elige 5 personajes</h1>
+      <p class="lead">Elige a las personas cuya historia te interese más. Los trabajarás en el orden en que los elijas.</p>
+      <div class="grid" id="grid"></div>
+      <div class="row">
+        <span class="count" id="pick-count">0 de 5 elegidos</span>
+        <button class="btn" id="b-pick" disabled>Continuar</button>
+      </div>
+      <p class="hint" id="pick-msg" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- 3. Laboratorio -->
+  <section id="v-lab" class="stack" hidden>
+    <div class="steps" id="steps" aria-hidden="true"></div>
+    <div class="panel stack" id="lab"></div>
+  </section>
+
+  <!-- 4. Diploma -->
+  <section id="v-dip" class="stack" hidden>
+    <div class="panel stack dip">
+      <h1>Terminaste el laboratorio</h1>
+      <p class="lead">Este es tu diploma de término. Guárdalo como imagen y súbelo a la plataforma.</p>
+      <img id="dip-img" alt="Diploma de término del laboratorio de cultura de paz">
+      <p><b>Cómo guardarlo:</b> en computadora, haz clic derecho sobre el diploma y elige «Guardar imagen como…». En celular, mantén presionada la imagen y elige guardar. También puedes tomar una captura de pantalla completa.</p>
+      <div class="tablewrap"><table id="dip-data"></table></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+var P=[
+{id:'gandhi',n:'Mahatma Gandhi',yr:'1869–1948',pais:'India',tag:'Resistencia pacífica',
+ frag:'Mohandas Karamchand Gandhi nació en 1869 en Porbandar, India. Estudió leyes y, durante dos décadas en Sudáfrica, enfrentó la discriminación contra la comunidad india y desarrolló el satyagraha, la «fuerza de la verdad»: resistir la injusticia sin usar la violencia. De regreso en India encabezó campañas de desobediencia civil, como la Marcha de la Sal de 1930, de unos 390 kilómetros. India logró su independencia en 1947 y Gandhi fue asesinado en 1948.',
+ sit:"La dirección retiró a tu grupo el uso de la cancha después de una pelea entre otros alumnos. Tu grupo asegura que no tuvo nada que ver y que la medida es injusta. Hay enojo y varios quieren hacer algo ya.",
+ o:[["Organizar con tu grupo una carta firmada que explique lo ocurrido, pedir una reunión con la dirección y proponer reglas claras para usar la cancha.", 1, "Es acción firme y pacífica: dice la verdad, se organiza y propone una salida. Así actuaba Gandhi: sin violencia, pero sin quedarse callado."], ["Pedirle a la dirección, en privado, que haga una excepción con tu grupo de amigos.", 0, "Suena prudente y evita el choque, pero busca un favor para unos pocos y deja intacta la regla injusta para los demás."], ["Esperar unos días a que pase el enojo y confiar en que la dirección devuelva la cancha por sí sola.", 0, "La calma es valiosa, pero esperar sin explicar ni pedir nada deja que la injusticia se quede. La no violencia es acción, no espera."], ["Entrar a la cancha en el recreo sin permiso para demostrar que la medida no se puede imponer.", 0, "Parece desobediencia pacífica, pero sin diálogo previo ni propuesta sólo genera otro conflicto y da razón a la sanción. La desobediencia de Gandhi era organizada, explicada y con un objetivo claro."]]},
+{id:'king',n:'Martin Luther King Jr.',yr:'1929–1968',pais:'Estados Unidos',tag:'Derechos civiles',
+ frag:'Martin Luther King Jr. nació en 1929 en Atlanta, Estados Unidos. Pastor bautista, lideró el boicot a los autobuses de Montgomery (1955-1956) contra la segregación racial y en 1963 pronunció su discurso «Tengo un sueño» en la Marcha sobre Washington. Defendió los derechos civiles mediante la protesta pacífica. Recibió el Premio Nobel de la Paz en 1964 y fue asesinado en Memphis en 1968.',
+ sit:"En tu grupo casi todos le ponen un apodo a un compañero por su apariencia. Él se ríe, pero has notado que ya casi no participa y falta más. Algunos dicen que «es broma porque él también se ríe».",
+ o:[["Decirle en privado a quien empezó los apodos que pare, y no meterte más.", 0, "Es un buen primer paso, pero depende de una sola charla, no cambia lo que el grupo vuelve normal ni acompaña a quien está sufriendo."], ["Preguntarle a tu compañero cómo se siente y, con su acuerdo, proponer una regla de respeto para todo el grupo y pedir apoyo a tu tutor.", 1, "Escuchas a quien resulta afectado, defiendes su dignidad sin agredir y buscas un cambio colectivo, no sólo un caso aislado."], ["Respetar que él se ríe: si no se queja, no hay problema.", 0, "Reírse puede ser una forma de protegerse. Que no se queje no significa que no le duela, y faltar a clases es una señal."], ["Pedir a la dirección que sancione de inmediato a todo el grupo, sin hablar antes con tu compañero.", 0, "Busca justicia, pero sin escuchar al afectado ni dar oportunidad de cambiar, el castigo no transforma la actitud y puede avergonzarlo más."]]},
+{id:'mandela',n:'Nelson Mandela',yr:'1918–2013',pais:'Sudáfrica',tag:'Reconciliación',
+ frag:'Nelson Mandela nació en 1918 en Sudáfrica. Como abogado y líder del Congreso Nacional Africano combatió el apartheid, el sistema de segregación racial, y pasó 27 años en prisión. Liberado en 1990, negoció con el gobierno una transición democrática y compartió el Nobel de la Paz de 1993 con F. W. de Klerk. En 1994 fue el primer presidente elegido en elecciones abiertas a todas las razas e impulsó la reconciliación nacional.',
+ sit:"Dos equipos se pelearon por la autoría de una idea en un proyecto, y una persona de cada equipo dijo cosas muy hirientes. Ahora ambos te piden a ti, que eres neutral, que decidas quién tiene la razón.",
+ o:[["Decidir cuál idea surgió primero y dar la razón a ese equipo para cerrar el tema.", 0, "Parece justo y rápido, pero ganar-perder deja resentimientos y no atiende lo hiriente que se dijeron."], ["Reunir a ambos equipos, escuchar cada versión, pedir que reconozcan lo que dijeron y acordar cómo compartir el crédito.", 1, "Escuchar a ambas partes, reconocer el daño y buscar un acuerdo que mire hacia adelante es el camino de reconciliación de Mandela."], ["Decir que no te corresponde y que lo resuelvan solos.", 0, "Respetar sus procesos suena razonable, pero ambos pidieron ayuda. Sin un espacio de escucha, el conflicto sigue."], ["Proponer que cada equipo se disculpe por escrito en el chat del grupo y ya.", 0, "Las disculpas ayudan, pero obligadas, públicas y sin escuchar lo ocurrido, son superficiales y pueden aumentar el rencor."]]},
+{id:'malala',n:'Malala Yousafzai',yr:'1997–presente',pais:'Pakistán',tag:'Educación de las niñas',
+ frag:'Malala Yousafzai nació en 1997 en Mingora, en el valle de Swat, Pakistán. Desde niña defendió públicamente el derecho de las niñas a ir a la escuela, aunque los talibanes lo prohibían en su región. En 2012, con 15 años, sufrió un ataque armado y sobrevivió. En 2014 recibió el Nobel de la Paz a los 17 años, la persona más joven en lograrlo, y fundó el Fondo Malala para promover la educación de las niñas.',
+ sit:"El maestro del club de ciencias dice que «por experiencia, los equipos funcionan mejor con chicos». Varias compañeras interesadas se quedan fuera y un grupo de amigas quiere hacer algo.",
+ o:[["Crear su propio club de ciencias sólo para chicas, sin pedirle nada a la escuela.", 0, "Es una iniciativa valiosa, pero deja sin resolver que el club oficial excluya. El derecho a participar también se defiende hablando."], ["Presentar al maestro y a la dirección el interés de las compañeras y pedir criterios de ingreso por mérito, abiertos a todas y todos.", 1, "Usas tu voz de forma respetuosa y con propuestas concretas para que se respete un derecho, como hizo Malala con la educación."], ["Publicar en redes el nombre del maestro acusándolo de machista.", 0, "Puede dar visibilidad, pero acusar públicamente sin dialogar antes cierra la puerta al cambio y expone a personas."], ["Convencer a las compañeras de esperar a la siguiente convocatoria porque quizá el maestro cambie de opinión.", 0, "Esperar suena paciente, pero nada indica que cambiará. Sin voz, la exclusión se repite."]]},
+{id:'menchu',n:'Rigoberta Menchú Tum',yr:'1959–presente',pais:'Guatemala',tag:'Derechos de los pueblos indígenas',
+ frag:'Rigoberta Menchú Tum nació en 1959 en Guatemala, en una familia del pueblo maya k’iche’. Durante el conflicto armado interno del país perdió a familiares y tuvo que exiliarse, y desde allí denunció ante el mundo la violencia contra los pueblos indígenas. Defiende sus derechos, su cultura y su tierra. En 1992 recibió el Premio Nobel de la Paz y después fue Embajadora de Buena Voluntad de la UNESCO.',
+ sit:"Una compañera quiere presentar en una exposición una tradición de su comunidad indígena. Algunos dicen que mejor elija «algo más moderno» y otros se burlan de su pronunciación. Ella duda en participar.",
+ o:[["Sugerirle que elija un tema más general para que nadie se burle.", 0, "Parece protegerla, pero la obliga a ocultar su cultura. Lo que debe cambiar es la actitud de quienes se burlan, no ella."], ["Hablar con el grupo sobre el valor de la diversidad cultural y preguntarle a ella cómo quiere presentar su tradición, apoyándola en lo que decida.", 1, "Defiendes la diversidad como riqueza y respetas que ella decida cómo participar."], ["Pedirle al maestro que la califique mejor para compensar las burlas.", 0, "Es buena intención, pero un trato especial no es respeto. No cambia la actitud del grupo y puede aislarla más."], ["Exigir que quienes se burlaron se disculpen frente a todos y que ella presente sí o sí.", 0, "Busca justicia, pero obligarla a presentar y exhibir a otros le quita decisión a ella y puede generar más rechazo."]]},
+{id:'tutu',n:'Desmond Tutu',yr:'1931–2021',pais:'Sudáfrica',tag:'Justicia restaurativa',
+ frag:'Desmond Tutu nació en 1931 en Sudáfrica. Sacerdote anglicano, llegó a ser arzobispo de Ciudad del Cabo y usó su voz para oponerse al apartheid sin recurrir a la violencia. Recibió el Nobel de la Paz en 1984. Tras el fin del apartheid presidió la Comisión de la Verdad y la Reconciliación, donde víctimas y responsables contaron lo ocurrido para buscar justicia y perdón en lugar de venganza.',
+ sit:"Un compañero publicó en el chat del grupo una foto de otro con un comentario burlón. El afectado se enojó y la borró, pero el grupo sigue hablando del tema. El autor dice que «era broma» y pide que no lo expulsen.",
+ o:[["Aceptar la explicación de «era broma» y pedir que ya no se hable más del tema.", 0, "Cerrar rápido evita problemas, pero ignora cómo se sintió el afectado."], ["Pedir que se suspenda al compañero del chat una semana como escarmiento.", 0, "Una sanción puede ser parte de la respuesta, pero sola no repara el daño ni cambia la relación entre ambos."], ["Proponer un diálogo en el que el afectado diga cómo se sintió, quien publicó reconozca el daño y acuerden cómo repararlo, con acompañamiento del tutor.", 1, "Reconocer, escuchar y reparar es justicia restaurativa: se atiende el daño en lugar de buscar venganza."], ["Que el afectado publique una foto del otro con un comentario similar para que sepa lo que se siente.", 0, "Intenta que se ponga en su lugar, pero responde daño con daño y amplía el conflicto."]]},
+{id:'teresa',n:'Teresa de Calcuta',yr:'1910–1997',pais:'India',tag:'Compasión y servicio',
+ frag:'Teresa de Calcuta nació en 1910 en Skopie, hoy Macedonia del Norte, y llegó a la India en 1929 como religiosa. En 1950 fundó las Misioneras de la Caridad para atender a personas enfermas, pobres y abandonadas en Calcuta. Su trabajo se extendió a decenas de países. Recibió el Nobel de la Paz en 1979 y fue canonizada en 2016. Murió en 1997.',
+ sit:"Una compañera se la pasa sola en el receso y parece triste. Cuando le preguntas, te dice que «está bien» y te pide que no le cuentes a nadie. Te preocupa, pero no quieres traicionar su confianza.",
+ o:[["Respetar su petición, seguir siendo su amigo y no hacer nada más.", 0, "Respetar su confianza es importante, pero si hay señales de que no está bien, quedarte sin hacer nada puede dejarla sola."], ["Contarle a varios amigos para que entre todos traten de animarla.", 0, "Quieres ayudar, pero compartir su situación sin permiso la expone y puede avergonzarla."], ["Decirle que te importa y que cuenta contigo, ofrecer acompañarla con un adulto de confianza, y si ves riesgo para ella, avisar a un adulto aunque no te lo autorice.", 1, "Cuidas con respeto y cercanía, sin exhibirla, y buscas que alguien responsable pueda ayudarla de verdad."], ["Insistirle todos los días hasta que te cuente qué le pasa.", 0, "La insistencia nace del cariño, pero puede presionarla. Acompañar también es respetar sus tiempos."]]},
+{id:'chavez',n:'César Chávez',yr:'1927–1993',pais:'Estados Unidos',tag:'Derechos de los trabajadores del campo',
+ frag:'César Chávez nació en 1927 en Arizona, Estados Unidos, en una familia de origen mexicano. Siendo trabajador agrícola conoció las malas condiciones del campo y en 1962 cofundó con Dolores Huerta la organización que después se convirtió en el sindicato United Farm Workers. Impulsó huelgas, marchas, ayunos y boicots pacíficos, como la huelga de la uva en Delano, California, iniciada en 1965, para exigir salarios y trato dignos.',
+ sit:"En un proyecto en equipo, tres personas hacen casi todo y dos casi no participan. Las tres están cansadas y una propone dejar a los otros dos fuera del trabajo final.",
+ o:[["Dejar fuera del trabajo final a quienes no participaron y avisar al maestro después.", 0, "Parece justo, pero se decide sin escucharlos ni darles oportunidad de responder. Puede haber razones que no conoces."], ["Seguir haciendo todo para evitar discutir y entregar a tiempo.", 0, "Evitas el conflicto, pero aceptas una carga injusta que se va a repetir."], ["Convocar a todo el equipo, escuchar por qué no han participado, repartir tareas con acuerdos claros y revisar el avance juntos; si no cumplen, informar al maestro con evidencia.", 1, "Organizarse, escuchar y poner acuerdos claros es una forma pacífica de exigir un reparto justo."], ["Hablar de inmediato con el maestro para que cambie los equipos.", 0, "Puede ser un último recurso, pero acudir primero a la autoridad salta el diálogo que podría resolverlo."]]},
+{id:'satyarthi',n:'Kailash Satyarthi',yr:'1954–presente',pais:'India',tag:'Infancia libre de trabajo forzado',
+ frag:'Kailash Satyarthi nació en 1954 en India. Siendo ingeniero dejó su profesión para dedicarse a proteger a la infancia: en 1980 impulsó el movimiento Bachpan Bachao Andolan («Salvemos la infancia») y ha participado en el rescate de decenas de miles de niñas y niños del trabajo forzado. Organizó marchas internacionales contra el trabajo infantil y en 2014 compartió el Nobel de la Paz con Malala Yousafzai.',
+ sit:"Un compañero de tu colonia, de 11 años, ayuda en un taller todas las tardes y falta a clases. Su familia dice que necesita el ingreso, y él dice que le gusta.",
+ o:[["Respetar la decisión de la familia: ellos saben lo que necesitan.", 0, "Es comprensible por la situación económica, pero un niño tiene derecho a estudiar y a no trabajar. La decisión no es sólo de la familia."], ["Denunciar de inmediato al dueño del taller con la policía.", 0, "Parece hacer justicia, pero actuar de golpe sin considerar a la familia puede dejarlos sin ingreso ni apoyo, y no ayuda al niño a volver a la escuela."], ["Hablar con tu compañero y con un adulto de confianza o con la escuela para acercar a la familia a programas de apoyo, de modo que él pueda seguir estudiando.", 1, "Buscas que quienes pueden proteger a la niñez actúen de forma segura, y atiendes la causa del problema."], ["Ayudarle tú con las tareas por las tardes para que no se atrase.", 0, "Es un buen gesto, pero no cambia que trabaja y falta a clases. Hace falta que alguien con capacidad de apoyo actúe."]]},
+{id:'annan',n:'Kofi Annan',yr:'1938–2018',pais:'Ghana',tag:'Diálogo y mediación',
+ frag:'Kofi Annan nació en 1938 en Kumasi, Ghana. Trabajó casi toda su vida en las Naciones Unidas y fue su secretario general de 1997 a 2006. Impulsó los Objetivos de Desarrollo del Milenio, la lucha contra el VIH/sida y el diálogo para frenar conflictos. En 2001 recibió el Premio Nobel de la Paz junto con la ONU. Murió en 2018.',
+ sit:"Dos grupos discuten por el uso de la cancha. Cada uno quiere «ganar» el horario, ya hay empujones y la tensión crece. Te piden que apoyes a un lado.",
+ o:[["Apoyar al grupo con más integrantes porque tendrá más fuerza.", 0, "Decidir por número no resuelve el problema y deja resentido al otro grupo."], ["Proponer un partido y que quien gane se quede con el horario.", 0, "Parece justo y pacífico, pero convierte el conflicto en competencia y deja a un grupo sin cancha."], ["Sugerir una mesa con representantes de ambos grupos, escuchar lo que necesita cada uno y acordar un calendario de turnos.", 1, "Dialogar, mediar y acordar reglas claras para todos es la forma pacífica de resolver conflictos que Annan promovía."], ["Pedir a la dirección que prohíba la cancha a ambos grupos hasta que dejen de pelear.", 0, "Frena la tensión, pero castiga a todos sin atender la causa y no enseña a resolver conflictos."]]}
+];
+var $=function(id){return document.getElementById(id)};
+var S={name:'',start:null,end:null,sel:[],step:0,ans:{}};
+var tick=null;
+
+function show(id){['v-reg','v-pick','v-lab','v-dip'].forEach(function(v){$(v).hidden=(v!==id)});window.scrollTo(0,0)}
+function pad(n){return String(n).padStart(2,'0')}
+function fdate(d){return d.toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'})}
+function ftime(d){return pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds())+' h'}
+function fdur(ms){var s=Math.max(0,Math.round(ms/1000));var h=Math.floor(s/3600),m=Math.floor((s%3600)/60),x=s%60;
+  return (h?h+' h ':'')+m+' min '+x+' s'}
+function words(t){return (t.trim().match(/\S+/g)||[]).length}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+
+/* Registro */
+function clock(){var d=new Date();$('r-fecha').textContent=fdate(d);$('r-hora').textContent=ftime(d)}
+clock();var clk=setInterval(clock,1000);
+function nameOk(v){var w=v.trim().split(/\s+/).filter(function(x){return x.length>1});return w.length>=2}
+$('nombre').addEventListener('input',function(){$('b-start').disabled=!nameOk(this.value)});
+$('f-reg').addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=$('nombre').value.trim().replace(/\s+/g,' ');
+  if(!nameOk(v)){$('nombre-hint').textContent='Escribe al menos nombre y un apellido.';return}
+  S.name=v;S.start=new Date();clearInterval(clk);
+  $('timer').hidden=false;tick=setInterval(updTimer,1000);updTimer();
+  buildGrid();show('v-pick');
+});
+function updTimer(){var s=Math.floor(((S.end||new Date())-S.start)/1000);$('timer').textContent='Tiempo '+pad(Math.floor(s/60))+':'+pad(s%60)}
+
+/* Selección */
+function buildGrid(){
+  var g=$('grid');g.innerHTML='';
+  P.forEach(function(p){
+    var b=document.createElement('button');b.type='button';b.className='card';b.setAttribute('aria-pressed','false');b.dataset.id=p.id;
+    b.innerHTML='<span class="nm">'+p.n+'</span><span class="yr">'+p.yr+' · '+p.pais+'</span><span class="tg">'+p.tag+'</span>';
+    b.addEventListener('click',function(){toggle(p.id,b)});
+    g.appendChild(b);
+  });
+}
+function toggle(id,btn){
+  var i=S.sel.indexOf(id);
+  if(i>=0){S.sel.splice(i,1);btn.setAttribute('aria-pressed','false');$('pick-msg').textContent=''}
+  else{
+    if(S.sel.length>=5){$('pick-msg').textContent='Ya elegiste 5. Quita uno si quieres cambiarlo.';return}
+    S.sel.push(id);btn.setAttribute('aria-pressed','true');$('pick-msg').textContent='';
+  }
+  $('pick-count').textContent=S.sel.length+' de 5 elegidos';
+  $('b-pick').disabled=S.sel.length!==5;
+}
+$('b-pick').addEventListener('click',function(){
+  S.step=0;S.ans={};S.sel.forEach(function(id){S.ans[id]={op:'',ok:false,tries:0,order:null,fb:null,last:null}});
+  show('v-lab');renderStep();
+});
+
+/* Laboratorio */
+function pers(id){return P.filter(function(p){return p.id===id})[0]}
+function renderStep(){
+  var id=S.sel[S.step],p=pers(id),a=S.ans[id];
+  if(!a.order)a.order=shuffle(p.o.map(function(_,i){return i}));
+  var st='';for(var i=0;i<5;i++)st+='<i class="'+(i<S.step?'done':i===S.step?'cur':'')+'"></i>';
+  $('steps').innerHTML=st;
+  var last=S.step===4;
+  var o='';
+  a.order.forEach(function(k){
+    var cls='opt';
+    if(a.last===k)cls+=p.o[k][1]?' good':' bad';
+    if(a.ok&&p.o[k][1])cls=' opt good'.trim();
+    o+='<button type="button" class="'+cls+'" data-k="'+k+'"'+(a.ok?' disabled':'')+'>'+p.o[k][0]+'</button>';
+  });
+  $('lab').innerHTML=
+   '<div class="who"><span class="hint">Personaje '+(S.step+1)+' de 5</span><h2>'+p.n+'</h2><span class="yr">'+p.yr+' · '+p.pais+'</span></div>'+
+   '<p class="frag">'+p.frag+'</p>'+
+   '<div class="sec"><h3>1. Tu opinión</h3><label for="op">¿Qué opinas de este personaje y de su aporte a la cultura de paz? Escríbelo con tus palabras (mínimo 30 palabras).</label>'+
+   '<textarea id="op" placeholder="Escribe aquí tu opinión…"></textarea><span class="counter" id="cnt" aria-live="polite"></span></div>'+
+   '<div class="sec"><h3>2. Dilema de conflicto</h3><p class="scene">'+p.sit+'</p><p class="lbl">¿Qué decisión construye mejor una cultura de paz?</p><p class="hint">Varias opciones parecen razonables. Elige la que escucha a todas las partes, evita dañar y busca reparar.</p>'+
+   '<div class="opts" id="opts">'+o+'</div><div id="fb" aria-live="polite"></div></div>'+
+   '<div class="row"><button class="btn ghost" id="b-prev"'+(S.step===0?' disabled':'')+'>Anterior</button>'+
+   '<button class="btn" id="b-next" disabled>'+(last?'Finalizar y ver mi diploma':'Siguiente personaje')+'</button></div>';
+  $('op').value=a.op;
+  $('op').addEventListener('input',function(){a.op=this.value;upd()});
+  $('opts').addEventListener('click',function(e){
+    var b=e.target.closest('.opt');if(!b||a.ok)return;
+    var k=+b.dataset.k;a.tries++;a.last=k;
+    if(p.o[k][1])a.ok=true;
+    a.fb={good:!!p.o[k][1],t:p.o[k][2]};
+    renderStep();
+    $('op').focus({preventScroll:true});
+  });
+  $('b-prev').addEventListener('click',function(){S.step--;renderStep();window.scrollTo(0,0)});
+  $('b-next').addEventListener('click',function(){
+    if(last){S.end=new Date();clearInterval(tick);updTimer();finish()}
+    else{S.step++;renderStep();window.scrollTo(0,0)}
+  });
+  if(a.fb){$('fb').innerHTML='<div class="fb '+(a.fb.good?'good':'bad')+'"><b>'+(a.fb.good?'Buena decisión. ':'Piénsalo otra vez. ')+'</b>'+a.fb.t+(a.fb.good?'':' Elige otra opción.')+'</div>'}
+  upd();
+  function upd(){
+    var n=words(a.op);
+    $('cnt').textContent=n+' / 30 palabras'+(n>=30?' ✓':'');
+    $('cnt').className='counter'+(n>=30?' ok':'');
+    $('b-next').disabled=!(n>=30&&a.ok);
+  }
+}
+
+/* Diploma */
+function code(){
+  var s=S.name+'|'+S.start.getTime()+'|'+S.end.getTime(),h=2166136261;
+  for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}
+  return 'CP-'+(h>>>0).toString(36).toUpperCase().padStart(7,'0');
+}
+function finish(){
+  show('v-dip');
+  var rows=[['Nombre',S.name],['Fecha de realización',fdate(S.start)],['Hora de inicio',ftime(S.start)],['Hora de término',ftime(S.end)],
+    ['Tiempo empleado',fdur(S.end-S.start)],['Personajes',S.sel.map(function(i){return pers(i).n}).join(', ')],['Código de verificación',code()]];
+  var t=$('dip-data');t.innerHTML='';
+  rows.forEach(function(r){var tr=document.createElement('tr'),a=document.createElement('td'),b=document.createElement('td');a.textContent=r[0];b.textContent=r[1];tr.appendChild(a);tr.appendChild(b);t.appendChild(tr)});
+  var go=function(){try{drawDiploma()}catch(e){$('dip-img').alt='No se pudo generar la imagen. Toma una captura de pantalla de los datos de abajo.'}};
+  try{Promise.all([document.fonts.load('700 60px Fraunces'),document.fonts.load('italic 400 30px "Public Sans"'),document.fonts.load('600 24px "Public Sans"'),document.fonts.load('400 24px "Public Sans"')]).then(go,go)}catch(e){go()}
+}
+function fit(ctx,text,maxW,size,font){var s=size;do{ctx.font=font(s);if(ctx.measureText(text).width<=maxW||s<=14)break;s-=2}while(true);return s}
+function wrap(ctx,text,maxW){var w=text.split(' '),l='',out=[];w.forEach(function(x){var t=l?l+' '+x:x;if(ctx.measureText(t).width>maxW&&l){out.push(l);l=x}else l=t});if(l)out.push(l);return out}
+function branch(ctx,x,y,flip){
+  ctx.save();ctx.translate(x,y);if(flip)ctx.scale(-1,1);
+  ctx.strokeStyle='#2F5D46';ctx.fillStyle='#2F5D46';ctx.lineWidth=5;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(0,160);ctx.quadraticCurveTo(-34,0,0,-170);ctx.stroke();
+  for(var i=0;i<=8;i++){
+    var t=i/8,px=2*(1-t)*t*(-34)*1+0,py=(1-t)*(1-t)*160+2*(1-t)*t*0+t*t*(-170);
+    px=2*(1-t)*t*(-34);
+    [-1,1].forEach(function(sd){
+      ctx.save();ctx.translate(px,py);ctx.rotate(sd*(0.9)-0.1);
+      ctx.beginPath();ctx.ellipse(sd*34,0,36,12,0,0,Math.PI*2);ctx.fill();ctx.restore();
+    });
+  }
+  ctx.restore();
+}
+function drawDiploma(){
+  var W=1600,H=1130,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');
+  var disp=function(s){return '700 '+s+'px Fraunces, Georgia, serif'};
+  var body=function(s,w,it){return (it?'italic ':'')+(w||400)+' '+s+'px "Public Sans", system-ui, sans-serif'};
+  x.fillStyle='#F8F7F0';x.fillRect(0,0,W,H);
+  x.strokeStyle='#2F5D46';x.lineWidth=12;x.strokeRect(34,34,W-68,H-68);
+  x.strokeStyle='#A87A1E';x.lineWidth=3;x.strokeRect(58,58,W-116,H-116);
+  [[58,58],[W-58,58],[58,H-58],[W-58,H-58]].forEach(function(p){x.fillStyle='#A87A1E';x.fillRect(p[0]-9,p[1]-9,18,18)});
+  x.textAlign='center';x.textBaseline='alphabetic';
+  x.fillStyle='#50635B';x.font=body(21,600);try{x.letterSpacing='3px'}catch(e){}
+  x.fillText('ESCUELA PREPARATORIA NO. 5 «DR. ÁNGEL MA. GARIBAY KINTANA» · UAEMéx',W/2,125);
+  try{x.letterSpacing='0px'}catch(e){}
+  x.fillStyle='#16251F';x.font=disp(84);x.fillText('Diploma de término',W/2,225);
+  x.fillStyle='#2F5D46';x.font=body(28,600);x.fillText('Laboratorio educativo · Cultura de paz y participación',W/2,280);
+  x.fillStyle='#50635B';x.font=body(26,400,true);x.fillText('Se otorga a',W/2,350);
+  x.fillStyle='#16251F';var sz=fit(x,S.name,1000,78,disp);x.font=disp(sz);x.fillText(S.name,W/2,440);
+  x.strokeStyle='#A87A1E';x.lineWidth=2;x.beginPath();x.moveTo(W/2-480,468);x.lineTo(W/2+480,468);x.stroke();
+  x.fillStyle='#16251F';x.font=body(27);
+  var l1=wrap(x,'por completar los cinco recorridos del laboratorio: lectura de la historia del personaje, opinión escrita y resolución de un dilema de conflicto hacia la cultura de paz.',1000);
+  l1.forEach(function(t,i){x.fillText(t,W/2,525+i*40)});
+  var y2=525+l1.length*40+34;
+  x.font=body(26,600);x.fillStyle='#2F5D46';
+  wrap(x,'Personajes: '+S.sel.map(function(i){return pers(i).n}).join(' · '),1000).forEach(function(t,i){x.fillText(t,W/2,y2+i*38)});
+  var cols=[['FECHA',fdate(S.start)],['HORA DE INICIO',ftime(S.start)],['HORA DE TÉRMINO',ftime(S.end)],['TIEMPO EMPLEADO',fdur(S.end-S.start)]];
+  var cx=[390,660,930,1200],yb=830;
+  x.strokeStyle='#D2DDD7';x.lineWidth=2;x.beginPath();x.moveTo(280,yb-52);x.lineTo(1320,yb-52);x.stroke();
+  cols.forEach(function(k,i){
+    x.fillStyle='#50635B';x.font=body(18,600);try{x.letterSpacing='2px'}catch(e){}x.fillText(k[0],cx[i],yb);try{x.letterSpacing='0px'}catch(e){}
+    x.fillStyle='#16251F';var s2=fit(x,k[1],255,28,function(s){return body(s,600)});x.font=body(s2,600);x.fillText(k[1],cx[i],yb+44);
+  });
+  x.beginPath();x.moveTo(280,yb+84);x.lineTo(1320,yb+84);x.stroke();
+  x.fillStyle='#50635B';x.font=body(21);x.fillText('Código de verificación: '+code(),W/2,yb+140);
+  x.font=body(18,400,true);x.fillText('Generado en el laboratorio en línea. Conserva esta imagen como evidencia de participación.',W/2,yb+182);
+  branch(x,168,565,false);branch(x,W-168,565,true);
+  $('dip-img').src=c.toDataURL('image/png');
+}
+})();
+</script>
+
+</body></html>
